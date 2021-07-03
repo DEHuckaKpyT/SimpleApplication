@@ -16,21 +16,6 @@ public class SimpleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SimpleApplication.class, args);
-		ActionService actionService = new ActionService();
-
-		Scanner in = new Scanner(System.in);
-		System.out.print("Input a number: ");
-		String string = in.nextLine();
-
-		List<Integer> digits = new ArrayList<>();
-		for (int i = 0; i < string.length(); i++){
-			digits.add(string.charAt(i) - '0');
-		}
-//		ArrayList<Action> actions = new ArrayList<>();
-//		actions.add(new ActionMax());
-//		actionService.setActions(new ArrayList<Action>());
-		actionService.setDigits(digits);
-		actionService.doAll();
 	}
 
 }
