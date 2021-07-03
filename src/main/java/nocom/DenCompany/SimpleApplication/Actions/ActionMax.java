@@ -7,8 +7,8 @@ import java.util.List;
 @Component
 public class ActionMax implements Action{
     @Override
-    public void doAction(List<Integer> digits) {
-        System.out.println("Max = " + digits.stream()
+    public String doAction(List<Integer> digits) {
+        return ("Max = " + digits.stream()
                 .mapToInt(Integer::intValue)
                 .max()
                 .orElse(0));

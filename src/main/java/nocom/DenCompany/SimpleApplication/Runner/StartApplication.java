@@ -18,6 +18,7 @@ public class StartApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        //TODO попрятать по классам
         Scanner in = new Scanner(System.in);
         System.out.print("Input a number: ");
         String string = in.nextLine();
