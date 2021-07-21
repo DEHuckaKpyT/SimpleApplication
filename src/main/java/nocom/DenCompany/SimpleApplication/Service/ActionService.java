@@ -21,7 +21,8 @@ public class ActionService {
     public void doAll() {
         for (Action action :
                 actions) {
-            outputService.writeLine(action.doAction(digits));
+            String answer = action.doAction(digits);
+            outputService.writeLine(answer);
         }
     }
 }
