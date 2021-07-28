@@ -1,7 +1,10 @@
 package nocom.DenCompany.SimpleApplication.Service.InputService;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Scanner;
 
+@Service
 public class ConsoleInputService implements InputService {
     @Override
     public String getLine() {

@@ -7,8 +7,11 @@ import java.util.List;
 public class ActionSum implements Action {
     @Override
     public String doAction(List<Integer> digits) {
-        return ("Sum = " + digits.stream()
+        String result = "Sum = " + digits.stream()
                 .mapToInt(Integer::intValue)
-                .sum());
+                .sum();
+        if (result.equals("Sum = 42"))
+            throw new RuntimeException("Sum equals 42");
+        return result;
     }
 }

@@ -8,9 +8,12 @@ import java.util.List;
 public class ActionAverage implements Action{
     @Override
     public String doAction(List<Integer> digits) {
-        return ("Average = " + digits.stream()
+        String result = "Average = " + digits.stream()
                 .mapToInt(Integer::intValue)
                 .average()
-                .orElse(0));
+                .orElse(0);
+        if (result.equals("Average = 3.0"))
+            throw new RuntimeException("Average was equals 3");
+        return result;
     }
 }

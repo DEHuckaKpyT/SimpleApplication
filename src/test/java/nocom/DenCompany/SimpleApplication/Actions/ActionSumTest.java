@@ -47,4 +47,17 @@ class ActionSumTest {
         //assert
         Assertions.assertEquals(result, "Sum = 0");
     }
+
+    @Test
+    void badSum() {
+        //arrange
+        List<Integer> digits = Arrays.stream(new int[]{9, 9, 9, 9, 6})
+                .boxed()
+                .collect(Collectors.toList());
+        //act
+        RuntimeException runtimeException = assertThrows(RuntimeException.class,
+                () -> new ActionSum().doAction(digits));
+        //assert
+        Assertions.assertEquals(runtimeException.getMessage(),"Sum equals 42");
+    }
 }

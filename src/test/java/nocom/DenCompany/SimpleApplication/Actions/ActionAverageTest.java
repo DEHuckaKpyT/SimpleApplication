@@ -46,4 +46,17 @@ class ActionAverageTest {
         //assert
         Assertions.assertEquals(result, "Average = 0.0");
     }
+
+    @Test
+    void badAverage() {
+        //arrange
+        List<Integer> digits = Arrays.stream(new int[]{2, 3, 4})
+                .boxed()
+                .collect(Collectors.toList());
+        //act
+        RuntimeException runtimeException = assertThrows(RuntimeException.class,
+                () -> new ActionAverage().doAction(digits));
+        //assert
+        Assertions.assertEquals(runtimeException.getMessage(),"Average was equals 3");
+    }
 }

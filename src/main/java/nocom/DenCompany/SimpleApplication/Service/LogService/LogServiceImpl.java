@@ -5,10 +5,11 @@ import nocom.DenCompany.SimpleApplication.Entity.Log;
 import nocom.DenCompany.SimpleApplication.Repository.LogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Component
+@Service
 @Builder
 public class LogServiceImpl implements LogService {
     @Autowired
