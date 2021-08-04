@@ -1,7 +1,5 @@
 package nocom.DenCompany.SimpleApplication;
 
-import nocom.DenCompany.SimpleApplication.Actions.ActionAverage;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
