@@ -1,11 +1,13 @@
 package nocom.DenCompany.SimpleApplication.Actions;
 
+import nocom.DenCompany.SimpleApplication.Annotation.LogToTelegram;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Component
 public class ActionSum implements Action {
     @Override
+    @LogToTelegram
     public String doAction(List<Integer> digits) {
         String result = "Sum = " + digits.stream()
                 .mapToInt(Integer::intValue)
