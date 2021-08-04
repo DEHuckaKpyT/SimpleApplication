@@ -21,7 +21,7 @@ public class Logging {
 
     @AfterReturning(pointcut="logToTelegram()", returning="result")
     public void logToTelegramAfterReturning(Object result) throws IOException {
-        String url = "https://api.telegram.org/bot1916660240:AAFQOWTdJrsLaz8rdaXbBB83s_PGOp3wy8I/sendMessage?chat_id=1165327523&text="
+        String url = "https://api.telegram.org/bot***/sendMessage?chat_id=1165327523&text="
                 + result.toString();
 
         URL obj = new URL(url);
