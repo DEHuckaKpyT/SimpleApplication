@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Builder
@@ -24,5 +25,9 @@ public class LogServiceBD implements LogService {
                 .build();
 
         return logRepository.save(logEntity);
+    }
+    @Override
+    public List<Log> getAll() {
+        return logRepository.findAll();
     }
 }

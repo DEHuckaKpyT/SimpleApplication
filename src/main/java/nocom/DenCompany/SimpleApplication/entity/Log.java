@@ -1,8 +1,7 @@
 package nocom.DenCompany.SimpleApplication.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +11,11 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
+@Setter
+@Getter
 public class Log {
 
     @Id
