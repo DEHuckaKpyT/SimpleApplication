@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Service
 @Builder
-public class LogServiceImpl implements LogService {
+public class LogServiceBD implements LogService {
     @Autowired
     LogRepository logRepository;
 

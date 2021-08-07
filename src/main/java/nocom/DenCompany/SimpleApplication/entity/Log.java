@@ -1,5 +1,6 @@
 package nocom.DenCompany.SimpleApplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,12 +20,10 @@ public class Log {
     @GeneratedValue
     UUID id;
 
-    @Column
+    @JsonFormat(pattern="yyyy-MM-dd")
     Date date;
 
-    @Column
     String inputValue;
 
-    @Column
     String result;
 }

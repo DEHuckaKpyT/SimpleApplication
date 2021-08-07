@@ -1,5 +1,6 @@
 package nocom.DenCompany.SimpleApplication.action;
 
+import nocom.DenCompany.SimpleApplication.annotation.LogToDB;
 import nocom.DenCompany.SimpleApplication.annotation.LogToTelegram;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,7 @@ import java.util.List;
 public class ActionAverage implements Action{
     @Override
     @LogToTelegram
+    @LogToDB
     public String doAction(List<Integer> digits) {
         String result = "Average = " + digits.stream()
                 .mapToInt(Integer::intValue)
