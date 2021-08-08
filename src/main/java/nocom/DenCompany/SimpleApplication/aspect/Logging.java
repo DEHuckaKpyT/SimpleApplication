@@ -25,6 +25,7 @@ public class Logging {
 
     @Autowired
     LogServiceBD logServiceBD;
+
     @Pointcut("@annotation(nocom.DenCompany.SimpleApplication.annotation.LogToTelegram)")
     public void logToTelegram() {
     }
@@ -32,23 +33,23 @@ public class Logging {
     //TODO лениво сделал отправку уведомления в телеграм (посчитал, что это не так важно)
     @AfterReturning(pointcut = "logToTelegram()", returning = "result")
     public void logToTelegramAfterReturning(Object result) throws IOException {
-//        String test = System.getenv("Token");
-//        String url = "https://api.telegram.org/bot1916660240:"+System.getenv("Token")+"/sendMessage?chat_id=1165327523&text="
-//                + result.toString();
-//
-//        URL obj = new URL(url);
-//        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-//
-//        connection.setRequestMethod("GET");
-//
-//        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//        String inputLine;
-//        StringBuffer response = new StringBuffer();
-//
-//        while ((inputLine = in.readLine()) != null) {
-//            response.append(inputLine);
-//        }
-//        in.close();
+
+        String url = "https://api.telegram.org/bot" + System.getenv("TelegramBotToken") + "/sendMessage?chat_id=1165327523&text="
+                + result.toString();
+
+        URL obj = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+
+        connection.setRequestMethod("GET");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
 
 //        System.out.println(response.toString());
     }
@@ -56,7 +57,8 @@ public class Logging {
     @Pointcut("@annotation(nocom.DenCompany.SimpleApplication.annotation.LogToDB)")
     public void logToDB() {
     }
-        //TODO не получилось ограничить использование аннотации (чтобы был только List<Integer> параметр)
+
+    //TODO не получилось ограничить использование аннотации (чтобы был только List<Integer> параметр)
     @AfterReturning(pointcut = "logToDB()", returning = "result")
     public void logToDBAfterReturning(JoinPoint joinPoint, String result) {
         List<Integer> digits = (List<Integer>) joinPoint.getArgs()[0];
