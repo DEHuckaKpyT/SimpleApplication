@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 public class Parser {
 
-    public List<Integer> getDigitsByString(String string) {
+    public static List<Integer> getDigitsByString(String string) {
 
         if (string.length() > 100)
             throw new RuntimeException("String has > 100 symbols");
@@ -27,12 +27,12 @@ public class Parser {
 
     public static String getStringByDigits(List<Integer> digits) {
 
-        String inputString = "";
+        StringBuilder inputString = new StringBuilder();
         for (Integer digit :
                 digits) {
-            inputString += digit.toString();
+            inputString.append(digit.toString());
         }
 
-        return inputString;
+        return inputString.toString();
     }
 }

@@ -17,7 +17,7 @@ public class StartApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        List<Integer> digits = new Parser().getDigitsByString(new ConsoleInputService().getLine());
+        List<Integer> digits = Parser.getDigitsByString(new ConsoleInputService().getLine());
 
         actionService.setDigits(digits);
         actionService.doAll();
