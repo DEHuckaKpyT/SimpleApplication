@@ -6,10 +6,18 @@ import nocom.DenCompany.SimpleApplication.service.inputService.ConsoleInputServi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@SpringBootApplication
+@Component
+@ConditionalOnProperty(
+        prefix = "command.line.runner",
+        value = "enabled",
+        havingValue = "true",
+        matchIfMissing = true)
 public class StartApplication implements CommandLineRunner {
 
     @Autowired
