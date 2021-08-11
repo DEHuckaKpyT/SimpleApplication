@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 @Builder
 public class LogServiceBD implements LogService {
+
     @Autowired
     LogRepository logRepository;
 
@@ -26,6 +27,7 @@ public class LogServiceBD implements LogService {
 
         return logRepository.save(logEntity);
     }
+
     @Override
     public List<Log> getAll() {
         return logRepository.findAll();
