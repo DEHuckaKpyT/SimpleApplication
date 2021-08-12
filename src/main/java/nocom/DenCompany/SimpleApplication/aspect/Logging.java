@@ -2,7 +2,8 @@ package nocom.DenCompany.SimpleApplication.aspect;
 
 import nocom.DenCompany.SimpleApplication.Parser;
 import nocom.DenCompany.SimpleApplication.service.logService.LogService;
-import nocom.DenCompany.SimpleApplication.service.logService.LogServiceBD;
+import nocom.DenCompany.SimpleApplication.service.notificationService.NotificationService;
+import nocom.DenCompany.SimpleApplication.service.notificationService.TelegramNotificationService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -24,46 +25,31 @@ import java.util.List;
 public class Logging {
 
     @Autowired
-    LogServiceBD logServiceBD;
+    LogService logService;
+    @Autowired
+    List<NotificationService> notificationServices;
 
     @Pointcut("@annotation(nocom.DenCompany.SimpleApplication.annotation.LogToTelegram)")
     public void logToTelegram() {
     }
 
-    //TODO лениво сделал отправку уведомления в телеграм (посчитал, что это не так важно)
     @AfterReturning(pointcut = "logToTelegram()", returning = "result")
-    public void logToTelegramAfterReturning(Object result) throws IOException {
-
-        String url = "https://api.telegram.org/bot" + System.getenv("TelegramBotToken") + "/sendMessage?chat_id=1165327523&text="
-                + result.toString();
-
-        URL obj = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-
-        connection.setRequestMethod("GET");
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+    public void logToTelegramAfterReturning(String result) throws IOException {
+        for (NotificationService notificationService:
+             notificationServices) {
+            notificationService.send(result);
         }
-        in.close();
-
-//        System.out.println(response.toString());
     }
 
     @Pointcut("@annotation(nocom.DenCompany.SimpleApplication.annotation.LogToDB)")
     public void logToDB() {
     }
 
-    //TODO не получилось ограничить использование аннотации (чтобы был только List<Integer> параметр)
     @AfterReturning(pointcut = "logToDB()", returning = "result")
     public void logToDBAfterReturning(JoinPoint joinPoint, String result) {
         List<Integer> digits = (List<Integer>) joinPoint.getArgs()[0];
         String inputString = Parser.getStringByDigits(digits);
 
-        logServiceBD.log(new Date(), inputString, result);
+        logService.log(new Date(), inputString, result);
     }
 }
