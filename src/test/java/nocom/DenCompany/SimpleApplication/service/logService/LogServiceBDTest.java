@@ -32,26 +32,65 @@ class LogServiceBDTest {
                 new Log(UUID.fromString("a89b5ab1-17ac-462b-af33-9565631da3fa"),
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                         .parse("2021-08-10 14:11:45.842"),
-                        "11",
+                        "111",
                         "Average = 1.0"),
                 new Log(UUID.fromString("7506690b-065c-4e8e-9b97-9fe170f3f158"),
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                                 .parse("2021-08-10 14:11:46.192"),
-                        "11",
-                        "Max = 1"),
+                        "123",
+                        "Max = 3"),
                 new Log(UUID.fromString("074da972-97a1-43bb-845b-09837701c583"),
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                                 .parse("2021-08-10 14:11:46.422"),
-                        "11",
+                        "123",
                         "Min = 1"),
                 new Log(UUID.fromString("1013ef79-3dce-4afc-b343-0216d31093f9"),
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                                 .parse("2021-08-10 14:11:46.632"),
-                        "11",
-                        "Sum = 2")
+                        "122",
+                        "Sum = 5")
         }).collect(Collectors.toList());
         // Act
         List<Log> logs = logService.getAll();
+        // Asserts
+        assertThat(logs).isNotNull().isEqualTo(startLogs);
+    }
+
+    @Test
+    @DataSet(value = "/dataset/LogList.json", cleanBefore = true, cleanAfter = true)
+    void getFetchListInputValue123Test() throws ParseException {
+        // Arrange
+        List<Log> startLogs = Arrays.stream(new Log[]{
+                new Log(UUID.fromString("7506690b-065c-4e8e-9b97-9fe170f3f158"),
+                        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+                                .parse("2021-08-10 14:11:46.192"),
+                        "123",
+                        "Max = 3"),
+                new Log(UUID.fromString("074da972-97a1-43bb-845b-09837701c583"),
+                        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+                                .parse("2021-08-10 14:11:46.422"),
+                        "123",
+                        "Min = 1")
+        }).collect(Collectors.toList());
+        // Act
+        List<Log> logs = logService.getFetchedList("inputValue:123");
+        // Asserts
+        assertThat(logs).isNotNull().isEqualTo(startLogs);
+    }
+
+    @Test
+    @DataSet(value = "/dataset/LogList.json", cleanBefore = true, cleanAfter = true)
+    void getFetchListResultMax3Test() throws ParseException {
+        // Arrange
+        List<Log> startLogs = Arrays.stream(new Log[]{
+                new Log(UUID.fromString("7506690b-065c-4e8e-9b97-9fe170f3f158"),
+                        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+                                .parse("2021-08-10 14:11:46.192"),
+                        "123",
+                        "Max = 3")
+        }).collect(Collectors.toList());
+        // Act
+        List<Log> logs = logService.getFetchedList("result:Max = 3");
         // Asserts
         assertThat(logs).isNotNull().isEqualTo(startLogs);
     }

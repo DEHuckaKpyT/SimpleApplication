@@ -8,4 +8,5 @@ import java.util.List;
 public interface LogService {
     Log log(Date date, String inputValue, String result);
     List<Log> getAll();
+    List<Log> getFetchedList(String params);
 }

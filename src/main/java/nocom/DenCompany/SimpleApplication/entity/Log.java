@@ -22,11 +22,13 @@ public class Log {
     @GeneratedValue
     UUID id;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    @Column
     Date date;
 
+    @Column
     String inputValue;
 
+    @Column
     String result;
 
     //TODO не нашёл другого более правильного решения сравнить две даты в разных форматах
