@@ -1,5 +1,6 @@
 package nocom.DenCompany.SimpleApplication;
 
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,12 +18,10 @@ class ParserTest {
         String string = "136";
 
         //act
-        List<Integer> result = new Parser().getDigitsByString(string);
+        List<Integer> result = Parser.getDigitsByString(string);
 
         //assert
-        assertEquals(result, Arrays.stream(new int[]{1, 3, 6})
-                .boxed()
-                .collect(Collectors.toList()));
+        assertEquals(result, Lists.list(1, 3, 6));
     }
 
     @Test
@@ -32,12 +31,11 @@ class ParserTest {
         for (int i = 0; i < 101; i++) {
             string += '0';
         }
-        Parser parser = new Parser();
 
         //act
         String finalString = string;
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
-                () -> parser.getDigitsByString(finalString));
+                () -> Parser.getDigitsByString(finalString));
         //assert
         Assertions.assertEquals(runtimeException.getMessage(),"String has > 100 symbols");
     }
@@ -46,11 +44,10 @@ class ParserTest {
     void checkSymbolsForDigits() {
         //arrange
         String string = "123haha";
-        Parser parser = new Parser();
 
         //act
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
-                () -> parser.getDigitsByString(string));
+                () -> Parser.getDigitsByString(string));
         //assert
         Assertions.assertEquals(runtimeException.getMessage(),"String has symbol which not equals digit");
     }
@@ -59,11 +56,10 @@ class ParserTest {
     void checkSymbolsForSubstring666() {
         //arrange
         String string = "345666413";
-        Parser parser = new Parser();
 
         //act
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
-                () -> parser.getDigitsByString(string));
+                () -> Parser.getDigitsByString(string));
         //assert
         Assertions.assertEquals(runtimeException.getMessage(),"String contains substring \"666\"");
     }

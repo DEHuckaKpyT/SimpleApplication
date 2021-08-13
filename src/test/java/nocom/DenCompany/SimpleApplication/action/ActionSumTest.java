@@ -1,5 +1,6 @@
 package nocom.DenCompany.SimpleApplication.action;
 
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +15,7 @@ class ActionSumTest {
     @Test
     void BasicTest(){
         //arrange
-        List<Integer> digits = Arrays.stream(new int[]{5, 1, 3, 6, 1})
-                                     .boxed()
-                                     .collect(Collectors.toList());
+        List<Integer> digits = Lists.list(5, 1, 3, 6, 1);
         //act
         String result = new ActionSum().doAction(digits);
         //assert
@@ -26,9 +25,7 @@ class ActionSumTest {
     @Test
     void OneDigit(){
         //arrange
-        List<Integer> digits = Arrays.stream(new int[]{5})
-                                     .boxed()
-                                     .collect(Collectors.toList());
+        List<Integer> digits = Lists.list(5);
         //act
         String result = new ActionSum().doAction(digits);
         //assert
@@ -38,9 +35,7 @@ class ActionSumTest {
     @Test
     void EmptyListOfDigits(){
         //arrange
-        List<Integer> digits = Arrays.stream(new int[]{})
-                                     .boxed()
-                                     .collect(Collectors.toList());
+        List<Integer> digits = Lists.list();
         //act
         String result = new ActionSum().doAction(digits);
         //assert
@@ -50,9 +45,7 @@ class ActionSumTest {
     @Test
     void badSum() {
         //arrange
-        List<Integer> digits = Arrays.stream(new int[]{9, 9, 9, 9, 6})
-                .boxed()
-                .collect(Collectors.toList());
+        List<Integer> digits = Lists.list(9, 9, 9, 9, 6);
         //act
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> new ActionSum().doAction(digits));

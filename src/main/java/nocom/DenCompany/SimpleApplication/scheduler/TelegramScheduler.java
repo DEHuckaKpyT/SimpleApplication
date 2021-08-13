@@ -4,6 +4,7 @@ import nocom.DenCompany.SimpleApplication.entity.Log;
 import nocom.DenCompany.SimpleApplication.service.logService.LogService;
 import nocom.DenCompany.SimpleApplication.service.notificationService.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,11 @@ public class TelegramScheduler {
         this.notificationServices = notificationServices;
     }
 
+    @ConditionalOnProperty(
+            prefix = "telegram.scheduler",
+            value = "enabled",
+            havingValue = "true",
+            matchIfMissing = true)
     @Scheduled(cron = "${scheduler.time}")
     public void eveningSchedulerSummaryReport() throws IOException {
         String summaryReport = summaryReport();

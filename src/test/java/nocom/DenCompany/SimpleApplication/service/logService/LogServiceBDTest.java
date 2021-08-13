@@ -3,6 +3,7 @@ package nocom.DenCompany.SimpleApplication.service.logService;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.jupiter.tools.spring.test.postgres.annotation.meta.EnablePostgresIntegrationTest;
 import nocom.DenCompany.SimpleApplication.entity.Log;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,9 +17,10 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@EnablePostgresIntegrationTest
 @SpringBootTest(properties = {
-        "command.line.runner.enabled=false"})
+        "command.line.runner.enabled=false",
+        "telegram.scheduler.enabled=false"})
+@EnablePostgresIntegrationTest
 class LogServiceBDTest {
 
     @Autowired
@@ -28,7 +30,7 @@ class LogServiceBDTest {
     @DataSet(value = "/dataset/LogList.json", cleanBefore = true, cleanAfter = true)
     void getAllTest() throws ParseException {
         // Arrange
-        List<Log> startLogs = Arrays.stream(new Log[]{
+        List<Log> startLogs = Lists.list(
                 new Log(UUID.fromString("a89b5ab1-17ac-462b-af33-9565631da3fa"),
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                         .parse("2021-08-10 14:11:45.842"),
@@ -48,8 +50,7 @@ class LogServiceBDTest {
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                                 .parse("2021-08-10 14:11:46.632"),
                         "122",
-                        "Sum = 5")
-        }).collect(Collectors.toList());
+                        "Sum = 5"));
         // Act
         List<Log> logs = logService.getAll();
         // Asserts
@@ -60,7 +61,7 @@ class LogServiceBDTest {
     @DataSet(value = "/dataset/LogList.json", cleanBefore = true, cleanAfter = true)
     void getFetchListInputValue123Test() throws ParseException {
         // Arrange
-        List<Log> startLogs = Arrays.stream(new Log[]{
+        List<Log> startLogs = Lists.list(
                 new Log(UUID.fromString("7506690b-065c-4e8e-9b97-9fe170f3f158"),
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                                 .parse("2021-08-10 14:11:46.192"),
@@ -70,8 +71,7 @@ class LogServiceBDTest {
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                                 .parse("2021-08-10 14:11:46.422"),
                         "123",
-                        "Min = 1")
-        }).collect(Collectors.toList());
+                        "Min = 1"));
         // Act
         List<Log> logs = logService.getFetchedList("inputValue:123");
         // Asserts
@@ -82,13 +82,12 @@ class LogServiceBDTest {
     @DataSet(value = "/dataset/LogList.json", cleanBefore = true, cleanAfter = true)
     void getFetchListResultMax3Test() throws ParseException {
         // Arrange
-        List<Log> startLogs = Arrays.stream(new Log[]{
+        List<Log> startLogs = Lists.list(
                 new Log(UUID.fromString("7506690b-065c-4e8e-9b97-9fe170f3f158"),
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                                 .parse("2021-08-10 14:11:46.192"),
                         "123",
-                        "Max = 3")
-        }).collect(Collectors.toList());
+                        "Max = 3"));
         // Act
         List<Log> logs = logService.getFetchedList("result:Max = 3");
         // Asserts

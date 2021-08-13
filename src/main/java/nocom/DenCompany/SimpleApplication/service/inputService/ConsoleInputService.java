@@ -8,8 +8,13 @@ import java.util.Scanner;
 public class ConsoleInputService implements InputService {
     @Override
     public String getLine() {
-        Scanner in = new Scanner(System.in);
+        String input;
+
         System.out.print("Input a string: ");
-        return in.nextLine();
+        try(Scanner in = new Scanner(System.in)) {
+            input = in.nextLine();
+        }
+
+        return input;
     }
 }
