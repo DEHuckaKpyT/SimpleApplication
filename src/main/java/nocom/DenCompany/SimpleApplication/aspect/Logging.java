@@ -24,10 +24,14 @@ import java.util.List;
 @Component
 public class Logging {
 
-    @Autowired
     LogService logService;
-    @Autowired
     List<NotificationService> notificationServices;
+
+    @Autowired
+    public Logging(LogService logService, List<NotificationService> notificationServices) {
+        this.logService = logService;
+        this.notificationServices=notificationServices;
+    }
 
     @Pointcut("@annotation(nocom.DenCompany.SimpleApplication.annotation.LogToTelegram)")
     public void logToTelegram() {

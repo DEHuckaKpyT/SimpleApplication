@@ -19,6 +19,5 @@ public interface LogRepository extends JpaRepository<Log, UUID>,
             QuerydslBindings bindings, QLog root) {
         bindings.bind(String.class)
                 .first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
-//        bindings.excluding(root.date);
     }
 }

@@ -20,8 +20,12 @@ import java.util.List;
         matchIfMissing = true)
 public class StartApplication implements CommandLineRunner {
 
-    @Autowired
     ActionService actionService;
+
+    @Autowired
+    public StartApplication(ActionService actionService) {
+        this.actionService = actionService;
+    }
 
     @Override
     public void run(String... args) {

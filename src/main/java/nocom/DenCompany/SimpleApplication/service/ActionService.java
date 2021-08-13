@@ -11,11 +11,15 @@ import java.util.List;
 @Data
 @Service
 public class ActionService {
-    @Autowired
     List<Action> actions;
     List<Integer> digits;
-    @Autowired
     OutputService outputService;
+
+    @Autowired
+    public ActionService(List<Action> actions, OutputService outputService) {
+        this.actions = actions;
+        this.outputService = outputService;
+    }
 
     public void doAll() {
         for (Action action :

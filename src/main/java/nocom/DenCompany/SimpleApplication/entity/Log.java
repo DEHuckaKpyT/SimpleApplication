@@ -1,6 +1,5 @@
 package nocom.DenCompany.SimpleApplication.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.Column;

@@ -17,8 +17,12 @@ import java.util.regex.Pattern;
 @Builder
 public class LogServiceBD implements LogService {
 
-    @Autowired
     LogRepository logRepository;
+
+    @Autowired
+    public LogServiceBD(LogRepository logRepository) {
+        this.logRepository = logRepository;
+    }
 
     @Override
     public Log log(Date date, String inputValue, String result) {

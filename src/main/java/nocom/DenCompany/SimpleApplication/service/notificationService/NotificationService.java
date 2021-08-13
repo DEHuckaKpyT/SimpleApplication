@@ -6,6 +6,5 @@ import java.io.IOException;
 import java.util.concurrent.Future;
 
 public interface NotificationService {
-    @Async
     Future<String> send(String notification) throws IOException;
 }
