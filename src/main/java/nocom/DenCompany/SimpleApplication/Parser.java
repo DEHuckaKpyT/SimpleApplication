@@ -1,5 +1,6 @@
 package nocom.DenCompany.SimpleApplication;
 
+import nocom.DenCompany.SimpleApplication.customException.customExceptionHandler.ParserExceptionHandler;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,16 +11,11 @@ public class Parser {
 
     public static List<Integer> getDigitsByString(String string) {
 
-        if (string.length() > 100)
-            throw new RuntimeException("String has > 100 symbols");
-        if (string.contains("666"))
-            throw new RuntimeException("String contains substring \"666\"");
+        ParserExceptionHandler.checkStringWithDigits(string);
+
         List<Integer> digits = new ArrayList<>();
         for (int i = 0; i < string.length(); i++) {
-            char currentChar = string.charAt(i);
-            if (currentChar < '0' || currentChar > '9')
-                throw new RuntimeException("String has symbol which not equals digit");
-            digits.add(currentChar - '0');
+            digits.add(string.charAt(i) - '0');
         }
 
         return digits;
