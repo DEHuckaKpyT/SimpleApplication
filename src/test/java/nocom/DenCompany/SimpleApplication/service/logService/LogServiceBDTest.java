@@ -10,16 +10,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(properties = {
         "command.line.runner.enabled=false",
-        "telegram.scheduler.enabled=false"})
+        "telegram.scheduler.enabled=false",
+        "telegram.notification.service.enabled=false"})
 @EnablePostgresIntegrationTest
 class LogServiceBDTest {
 

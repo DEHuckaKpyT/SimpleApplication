@@ -11,6 +11,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.List;
 
+@ConditionalOnProperty(
+        prefix = "telegram.scheduler",
+        value = "enabled",
+        havingValue = "true",
+        matchIfMissing = true)
 @Component
 public class TelegramScheduler {
 
@@ -23,12 +28,7 @@ public class TelegramScheduler {
         this.notificationServices = notificationServices;
     }
 
-    @ConditionalOnProperty(
-            prefix = "telegram.scheduler",
-            value = "enabled",
-            havingValue = "true",
-            matchIfMissing = true)
-    @Scheduled(cron = "${scheduler.time}")
+    @Scheduled(cron = "${telegram.scheduler.time}")
     public void eveningSchedulerSummaryReport() throws IOException {
         String summaryReport = summaryReport();
         for (NotificationService notificationService:

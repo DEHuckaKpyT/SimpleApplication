@@ -1,6 +1,7 @@
 package nocom.DenCompany.SimpleApplication.service.notificationService;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.Future;
 
+@ConditionalOnProperty(
+        prefix = "telegram.notification.service",
+        value = "enabled",
+        havingValue = "true",
+        matchIfMissing = true)
 @Service
 public class TelegramNotificationService implements NotificationService {
 
