@@ -1,6 +1,6 @@
 package nocom.DenCompany.SimpleApplication;
 
-import nocom.DenCompany.SimpleApplication.customException.customExceptionHandler.ParserExceptionHandler;
+import nocom.DenCompany.SimpleApplication.customException.customExceptionChecker.ParserExceptionChecker;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class Parser {
 
     public static List<Integer> getDigitsByString(String string) {
 
-        ParserExceptionHandler.checkStringWithDigits(string);
+        ParserExceptionChecker.checkStringWithDigits(string);
 
         List<Integer> digits = new ArrayList<>();
         for (int i = 0; i < string.length(); i++) {

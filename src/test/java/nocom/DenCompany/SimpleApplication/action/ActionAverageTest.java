@@ -11,12 +11,15 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ActionAverageTest {
+
+    ActionAverage actionAverage = new ActionAverage();
+
     @Test
     void basicTest(){
         //arrange
         List<Integer> digits = Lists.list(1, 2, 3);
         //act
-        String result = new ActionAverage().doAction(digits);
+        String result = actionAverage.doAction(digits);
         //assert
         Assertions.assertEquals(result, "Average = 2.0");
     }
@@ -26,7 +29,7 @@ class ActionAverageTest {
         //arrange
         List<Integer> digits = Lists.list(5);
         //act
-        String result = new ActionAverage().doAction(digits);
+        String result = actionAverage.doAction(digits);
         //assert
         Assertions.assertEquals(result, "Average = 5.0");
     }
@@ -36,7 +39,7 @@ class ActionAverageTest {
         //arrange
         List<Integer> digits = Lists.list();
         //act
-        String result = new ActionAverage().doAction(digits);
+        String result = actionAverage.doAction(digits);
         //assert
         Assertions.assertEquals(result, "Average = 0.0");
     }
@@ -47,8 +50,8 @@ class ActionAverageTest {
         List<Integer> digits = Lists.list(2, 3, 4);
         //act
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
-                () -> new ActionAverage().doAction(digits));
+                () -> actionAverage.doAction(digits));
         //assert
-        Assertions.assertEquals(runtimeException.getMessage(),"Average was equals 3");
+        Assertions.assertEquals(runtimeException.getMessage(),"Error: Average was equals 3");
     }
 }

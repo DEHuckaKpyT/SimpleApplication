@@ -1,4 +1,4 @@
-package nocom.DenCompany.SimpleApplication.customException.customExceptionHandler;
+package nocom.DenCompany.SimpleApplication.customException.customExceptionChecker;
 
 import nocom.DenCompany.SimpleApplication.customException.NonDigitException;
 import nocom.DenCompany.SimpleApplication.customException.StringWith666Exception;
@@ -6,7 +6,7 @@ import nocom.DenCompany.SimpleApplication.customException.TooLongStringException
 import org.springframework.stereotype.Component;
 
 @Component
-public class ParserExceptionHandler {
+public class ParserExceptionChecker {
     public static void checkStringWithDigits(String string) {
 
         if (string.length() > 100)

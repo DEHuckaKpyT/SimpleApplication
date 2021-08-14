@@ -37,7 +37,7 @@ class ParserTest {
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> Parser.getDigitsByString(finalString));
         //assert
-        Assertions.assertEquals(runtimeException.getMessage(),"String has > 100 symbols");
+        Assertions.assertEquals(runtimeException.getMessage(),"Error: String has > 100 symbols");
     }
 
     @Test
@@ -49,7 +49,7 @@ class ParserTest {
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> Parser.getDigitsByString(string));
         //assert
-        Assertions.assertEquals(runtimeException.getMessage(),"String has symbol which not equals digit");
+        Assertions.assertEquals(runtimeException.getMessage(),"Error: String has symbol which not equals digit");
     }
 
     @Test
@@ -61,6 +61,6 @@ class ParserTest {
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> Parser.getDigitsByString(string));
         //assert
-        Assertions.assertEquals(runtimeException.getMessage(),"String contains substring \"666\"");
+        Assertions.assertEquals(runtimeException.getMessage(),"Error: String contains substring \"666\"");
     }
 }

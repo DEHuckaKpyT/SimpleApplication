@@ -12,32 +12,33 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ActionSumTest {
 
+    ActionSum actionSum = new ActionSum();
     @Test
-    void BasicTest(){
+    void basicTest(){
         //arrange
         List<Integer> digits = Lists.list(5, 1, 3, 6, 1);
         //act
-        String result = new ActionSum().doAction(digits);
+        String result = actionSum.doAction(digits);
         //assert
         Assertions.assertEquals(result, "Sum = 16");
     }
 
     @Test
-    void OneDigit(){
+    void oneDigit(){
         //arrange
         List<Integer> digits = Lists.list(5);
         //act
-        String result = new ActionSum().doAction(digits);
+        String result = actionSum.doAction(digits);
         //assert
         Assertions.assertEquals(result, "Sum = 5");
     }
 
     @Test
-    void EmptyListOfDigits(){
+    void emptyListOfDigits(){
         //arrange
         List<Integer> digits = Lists.list();
         //act
-        String result = new ActionSum().doAction(digits);
+        String result = actionSum.doAction(digits);
         //assert
         Assertions.assertEquals(result, "Sum = 0");
     }
@@ -48,8 +49,8 @@ class ActionSumTest {
         List<Integer> digits = Lists.list(9, 9, 9, 9, 6);
         //act
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
-                () -> new ActionSum().doAction(digits));
+                () -> actionSum.doAction(digits));
         //assert
-        Assertions.assertEquals(runtimeException.getMessage(),"Sum equals 42");
+        Assertions.assertEquals(runtimeException.getMessage(),"Error: Sum equals 42");
     }
 }

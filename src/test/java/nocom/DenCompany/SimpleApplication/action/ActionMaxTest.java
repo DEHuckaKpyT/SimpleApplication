@@ -10,32 +10,34 @@ import java.util.stream.Collectors;
 
 class ActionMaxTest {
 
+    ActionMax actionMax = new ActionMax();
+
     @Test
-    void BasicTest(){
+    void basicTest() {
         //arrange
         List<Integer> digits = Lists.list(5, 1, 3, 6, 1);
         //act
-        String result = new ActionMax().doAction(digits);
+        String result = actionMax.doAction(digits);
         //assert
         Assertions.assertEquals(result, "Max = 6");
     }
 
     @Test
-    void OneDigit(){
+    void oneDigit() {
         //arrange
         List<Integer> digits = Lists.list(5);
         //act
-        String result = new ActionMax().doAction(digits);
+        String result = actionMax.doAction(digits);
         //assert
         Assertions.assertEquals(result, "Max = 5");
     }
 
     @Test
-    void EmptyListOfDigits(){
+    void emptyListOfDigits() {
         //arrange
         List<Integer> digits = Lists.list();
         //act
-        String result = new ActionMax().doAction(digits);
+        String result = actionMax.doAction(digits);
         //assert
         Assertions.assertEquals(result, "Max = 0");
     }

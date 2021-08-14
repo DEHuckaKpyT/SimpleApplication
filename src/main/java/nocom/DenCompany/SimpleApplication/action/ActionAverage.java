@@ -2,7 +2,7 @@ package nocom.DenCompany.SimpleApplication.action;
 
 import nocom.DenCompany.SimpleApplication.annotation.LogToDB;
 import nocom.DenCompany.SimpleApplication.annotation.LogToTelegram;
-import nocom.DenCompany.SimpleApplication.customException.customExceptionHandler.AverageValueExceptionHandler;
+import nocom.DenCompany.SimpleApplication.customException.customExceptionChecker.AverageValueExceptionChecker;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class ActionAverage implements Action{
                 .average()
                 .orElse(0);
 
-        AverageValueExceptionHandler.checkAverageResult(result);
+        AverageValueExceptionChecker.checkAverageResult(result);
 
         return result;
     }

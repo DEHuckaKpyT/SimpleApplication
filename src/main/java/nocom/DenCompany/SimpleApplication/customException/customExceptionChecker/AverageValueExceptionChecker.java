@@ -1,8 +1,8 @@
-package nocom.DenCompany.SimpleApplication.customException.customExceptionHandler;
+package nocom.DenCompany.SimpleApplication.customException.customExceptionChecker;
 
 import nocom.DenCompany.SimpleApplication.customException.BadAverageValueException;
 
-public class AverageValueExceptionHandler {
+public class AverageValueExceptionChecker {
 
     public static void checkAverageResult(String result){
         if (result.equals("Average = 3.0"))

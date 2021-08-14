@@ -2,7 +2,7 @@ package nocom.DenCompany.SimpleApplication.action;
 
 import nocom.DenCompany.SimpleApplication.annotation.LogToDB;
 import nocom.DenCompany.SimpleApplication.annotation.LogToTelegram;
-import nocom.DenCompany.SimpleApplication.customException.customExceptionHandler.SumValueExceptionHandler;
+import nocom.DenCompany.SimpleApplication.customException.customExceptionChecker.SumValueExceptionChecker;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class ActionSum implements Action {
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        SumValueExceptionHandler.checkSumResult(result);
+        SumValueExceptionChecker.checkSumResult(result);
 
         return result;
     }
