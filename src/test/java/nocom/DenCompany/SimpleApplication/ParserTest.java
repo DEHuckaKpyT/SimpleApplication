@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParserTest {
 
     @Test
-    void basicTest() {
+    void basicDigitsByStringTest() {
         //arrange
         String string = "136";
 
@@ -25,7 +25,7 @@ class ParserTest {
     }
 
     @Test
-    void checkLength() {
+    void checkDigitsByStringLength() {
         //arrange
         String string = "";
         for (int i = 0; i < 101; i++) {
@@ -37,11 +37,11 @@ class ParserTest {
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> Parser.getDigitsByString(finalString));
         //assert
-        Assertions.assertEquals(runtimeException.getMessage(),"Error: String has > 100 symbols");
+        assertEquals(runtimeException.getMessage(), "Error: String has > 100 symbols");
     }
 
     @Test
-    void checkSymbolsForDigits() {
+    void checkDigitsByStringSymbolsForDigits() {
         //arrange
         String string = "123haha";
 
@@ -49,11 +49,11 @@ class ParserTest {
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> Parser.getDigitsByString(string));
         //assert
-        Assertions.assertEquals(runtimeException.getMessage(),"Error: String has symbol which not equals digit");
+        assertEquals(runtimeException.getMessage(), "Error: String has symbol which not equals digit");
     }
 
     @Test
-    void checkSymbolsForSubstring666() {
+    void checkDigitsByStringSymbolsForSubstring666() {
         //arrange
         String string = "345666413";
 
@@ -61,6 +61,18 @@ class ParserTest {
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> Parser.getDigitsByString(string));
         //assert
-        Assertions.assertEquals(runtimeException.getMessage(),"Error: String contains substring \"666\"");
+        assertEquals(runtimeException.getMessage(), "Error: String contains substring \"666\"");
+    }
+
+    @Test
+    void basicStringByDigitsTest() {
+        //arrange
+        List<Integer> digits = Lists.list(4, 5, 1);
+
+        //act
+        String result = Parser.getStringByDigits(digits);
+
+        //assert
+        assertEquals(result, "451");
     }
 }
