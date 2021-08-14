@@ -1,6 +1,8 @@
 package nocom.DenCompany.SimpleApplication.service.notificationService;
 
+import com.jupiter.tools.spring.test.core.annotation.EnableIntegrationTest;
 import org.assertj.core.util.Lists;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.ApplicationContext;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -18,32 +22,33 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.*;
 
-@SpringBootTest(properties = {"telegram.bot.token=example"})
-//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+@SpringBootTest(properties = {"telegram.bot.token="})
 class TelegramNotificationServiceTest {
 
+    @MockBean
+    HttpURLConnection mockHttpConnection;
+    @MockBean
+    URL mockUrl;
     @Autowired
     NotificationService notificationService;
 
-    //TODO валится с ошибками Failed to load ApplicationContext (не может создать бины)
     @Test
-    void sendTest() throws IOException {
+    void sendTest() throws IOException, ExecutionException, InterruptedException {
 //        //arrange
 //        String message = "hello";
-//        HttpURLConnection connection = Mockito.mock(HttpURLConnection.class);
-//        URL url = Mockito.mock(URL.class);
-//        Mockito.when(url.openConnection()).thenReturn(null);
-//        Mockito.when(connection.getInputStream()).thenReturn(new StringBufferInputStream(message));
+////        when(mockUrl.openConnection()).thenReturn(new URL("http://localhost:8080").openConnection());
+////        when(mockHttpConnection.getInputStream()).thenReturn(new StringBufferInputStream(message));
 //        //act
-//        String returnedValue = notificationService.send("notification").toString();
+//        String returnedValue = notificationService.send("test").get();
 //        //assert
-//        assertEquals(message, returnedValue);
-        assertEquals(1, 1);
+//        verify(mockHttpConnection).getInputStream();
+////        assertTrue(returnedValue.matches("^\\{\"ok\":true\\w*"));
     }
 }
