@@ -32,12 +32,8 @@ import static org.mockito.Mockito.*;
 @SpringBootTest(properties = {"telegram.bot.token="})
 class TelegramNotificationServiceTest {
 
-    @MockBean
-    HttpURLConnection mockHttpConnection;
-    @MockBean
-    URL mockUrl;
-    @Autowired
-    NotificationService notificationService;
+//    @Autowired
+//    NotificationService notificationService;
 
     @Test
     void sendTest() throws IOException, ExecutionException, InterruptedException {

@@ -17,10 +17,6 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(properties = {
-        "command.line.runner.enabled=false",
-        "telegram.scheduler.enabled=false",
-        "telegram.notification.service.enabled=false"})
 @EnablePostgresIntegrationTest
 class LogServiceBDTest {
 
