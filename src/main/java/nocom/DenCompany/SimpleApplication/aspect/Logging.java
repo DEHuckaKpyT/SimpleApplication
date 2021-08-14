@@ -30,7 +30,7 @@ public class Logging {
     @Autowired
     public Logging(LogService logService, List<NotificationService> notificationServices) {
         this.logService = logService;
-        this.notificationServices=notificationServices;
+        this.notificationServices = notificationServices;
     }
 
     @Pointcut("@annotation(nocom.DenCompany.SimpleApplication.annotation.LogToTelegram)")
@@ -39,8 +39,8 @@ public class Logging {
 
     @AfterReturning(pointcut = "logToTelegram()", returning = "result")
     public void logToTelegramAfterReturning(String result) throws IOException {
-        for (NotificationService notificationService:
-             notificationServices) {
+        for (NotificationService notificationService :
+                notificationServices) {
             notificationService.send(result);
         }
     }

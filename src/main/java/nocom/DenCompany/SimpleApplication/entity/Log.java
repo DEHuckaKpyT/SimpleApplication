@@ -30,6 +30,22 @@ public class Log {
     @Column
     String result;
 
+    public String getInputValue() {
+        return inputValue;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setInputValue(String inputValue) {
+        this.inputValue = inputValue;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
     //TODO не нашёл другого более правильного решения сравнить две даты в разных форматах
     @Override
     public boolean equals(Object o) {

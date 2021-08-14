@@ -1,5 +1,7 @@
 package nocom.DenCompany.SimpleApplication.controller;
 
+import nocom.DenCompany.SimpleApplication.controller.dto.LogDto;
+import nocom.DenCompany.SimpleApplication.controller.mapper.LogMapper;
 import nocom.DenCompany.SimpleApplication.entity.Log;
 import nocom.DenCompany.SimpleApplication.service.logService.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,12 @@ public class LogController {
     }
 
     @GetMapping("log/list")
-    public List<Log> list() {
-        return logService.getAll();
+    public List<LogDto> list() {
+        return LogMapper.INSTANCE.LogListToLogDtoList(logService.getAll());
     }
 
     @GetMapping("log/parametrizedList")
-    public List<Log> parametrizedList(@RequestParam(value = "search") String search){
-        return logService.getFetchedList(search);
+    public List<LogDto> parametrizedList(@RequestParam(value = "search") String search){
+        return LogMapper.INSTANCE.LogListToLogDtoList(logService.getFetchedList(search));
     }
 }
