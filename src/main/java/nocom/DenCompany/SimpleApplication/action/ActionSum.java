@@ -6,8 +6,10 @@ import nocom.DenCompany.SimpleApplication.customException.customExceptionChecker
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 @Component
 public class ActionSum implements Action {
+
     @Override
     @LogToTelegram
     @LogToDB

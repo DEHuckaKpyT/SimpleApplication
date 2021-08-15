@@ -36,7 +36,7 @@ public class TelegramNotificationService implements NotificationService {
         connection.setRequestMethod("GET");
 
         StringBuilder response = new StringBuilder();
-        try(BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);

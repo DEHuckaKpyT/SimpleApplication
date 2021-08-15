@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ActionAverage implements Action{
+public class ActionAverage implements Action {
 
     @Override
     @LogToTelegram

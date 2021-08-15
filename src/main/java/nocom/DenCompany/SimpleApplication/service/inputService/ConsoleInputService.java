@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 @Service
 public class ConsoleInputService implements InputService {
+
     @Override
     public String getLine() {
         String input;

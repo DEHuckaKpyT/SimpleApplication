@@ -59,13 +59,10 @@ public class Log {
 
         Log log = (Log) o;
 
-        if (this.id.equals(log.getId()) &&
+        return this.id.equals(log.getId()) &&
                 this.date.getTime() == log.date.getTime() &&
                 this.inputValue.equals(log.getInputValue()) &&
-                this.result.equals(log.getResult()))
-            return true;
-        else
-            return false;
+                this.result.equals(log.getResult());
 
     }
 }

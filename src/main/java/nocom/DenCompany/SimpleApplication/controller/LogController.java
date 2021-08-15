@@ -1,10 +1,9 @@
 package nocom.DenCompany.SimpleApplication.controller;
 
+import lombok.RequiredArgsConstructor;
 import nocom.DenCompany.SimpleApplication.controller.dto.LogDto;
 import nocom.DenCompany.SimpleApplication.controller.mapper.LogMapper;
-import nocom.DenCompany.SimpleApplication.entity.Log;
 import nocom.DenCompany.SimpleApplication.service.logService.LogService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,13 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class LogController {
-    LogService logService;
 
-    @Autowired
-    public LogController(LogService logService) {
-        this.logService = logService;
-    }
+    private final LogService logService;
 
     @GetMapping("log/list")
     public List<LogDto> list() {
@@ -26,7 +22,7 @@ public class LogController {
     }
 
     @GetMapping("log/parametrizedList")
-    public List<LogDto> parametrizedList(@RequestParam(value = "search") String search){
+    public List<LogDto> parametrizedList(@RequestParam(value = "search") String search) {
         return LogMapper.INSTANCE.LogListToLogDtoList(logService.getFetchedList(search));
     }
 }

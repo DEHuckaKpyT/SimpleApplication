@@ -1,29 +1,25 @@
 package nocom.DenCompany.SimpleApplication.runner;
 
+import lombok.RequiredArgsConstructor;
 import nocom.DenCompany.SimpleApplication.Parser;
 import nocom.DenCompany.SimpleApplication.service.actionService.ActionService;
 import nocom.DenCompany.SimpleApplication.service.inputService.ConsoleInputService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 @ConditionalOnProperty(
         prefix = "command.line.runner",
         value = "enabled",
         havingValue = "true",
         matchIfMissing = true)
+@RequiredArgsConstructor
+@Component
 public class StartApplication implements CommandLineRunner {
 
-    ActionService actionService;
-
-    @Autowired
-    public StartApplication(ActionService actionService) {
-        this.actionService = actionService;
-    }
+    private final ActionService actionService;
 
     @Override
     public void run(String... args) {

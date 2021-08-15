@@ -3,9 +3,7 @@ package nocom.DenCompany.SimpleApplication.customException.customExceptionChecke
 import nocom.DenCompany.SimpleApplication.customException.NonDigitException;
 import nocom.DenCompany.SimpleApplication.customException.StringWith666Exception;
 import nocom.DenCompany.SimpleApplication.customException.TooLongStringException;
-import org.springframework.stereotype.Component;
 
-@Component
 public class ParserExceptionChecker {
     public static void checkStringWithDigits(String string) {
 

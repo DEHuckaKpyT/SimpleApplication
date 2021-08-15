@@ -18,7 +18,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @EnablePostgresIntegrationTest
-class LogServiceBDTest {
+class LogServiceImplTest {
 
     @Autowired
     LogService logService;

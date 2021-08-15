@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ActionMin implements Action{
+public class ActionMin implements Action {
+
     @Override
     @LogToTelegram
     @LogToDB
