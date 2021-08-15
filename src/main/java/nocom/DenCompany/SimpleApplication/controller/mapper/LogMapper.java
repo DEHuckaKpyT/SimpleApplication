@@ -13,10 +13,6 @@ import java.util.List;
 public interface LogMapper {
     LogMapper INSTANCE = Mappers.getMapper(LogMapper.class);
 
-//    @Mappings({
-//            @Mapping(source = "inputValue", target = "inputValue"),
-//            @Mapping(source = "result", target = "result")
-//    })
     LogDto LogToLogDto(Log log);
 
     List<LogDto> LogListToLogDtoList(List<Log> logs);
